@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+}
+
+.content {
+	width: 80%;
+	margin: auto;
+	text-align: left;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.room_description {
+	margin-bottom:1em;
+	margin-top:1em;
+}
+
+.room_description .description {
+	color: green;
+	margin-top: 0.5em;
+}
+
+.room_description .items {
+	color: blue;
+	margin-top: 0.5em;
+}
+
+.room_description .exits {
+	color: black;
+	margin-top: 0.5em;
+}
+
+.command_entry input{
+	width: 100%;
+}
