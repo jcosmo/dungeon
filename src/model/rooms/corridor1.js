@@ -6,7 +6,5 @@ appState.addRoom(
     {
       "entrance": "entrance"
     },
-    {
-
-    }
+    []
 );

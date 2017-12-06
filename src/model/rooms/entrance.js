@@ -7,7 +7,7 @@ appState.addRoom(
       "corridor": "corridor1",
       "upstairs": "dinning"
     },
-    {
-
-    }
+    [
+      {id:'thing', name:'thing'}
+    ]
 );

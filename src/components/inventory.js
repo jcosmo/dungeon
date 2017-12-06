@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
 import {observer} from 'mobx-react';
 import appState from '../model/app_state';
+import InventoryItem from './inventory_item';
 
 export default observer(
     class Inventory extends Component {
       render() {
         var content;
-        if (appState.inventory.size === 0) {
-          content = "Nothing here!"
+        if (appState.inventory.length === 0) {
+          content = <li className="inventory_item"> Not even any fluff </li>
         }
         else {
-          content = <div>{appState.inventory.size} items</div>
+          content = appState.inventory.map(item => <InventoryItem key={item.id} item={item} />)
         }
         return (
-            <div>
+            <div className="inventory">
               <div className="header">Inventory</div>
-              <div>
-                {content}
-              </div>
+              {content}
             </div>
         );
       }

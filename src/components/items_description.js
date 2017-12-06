@@ -1,12 +1,13 @@
-import {Component} from "react";
+import {Component} from 'react';
+import {observer} from 'mobx-react';
 
-export default class ItemsDescription extends Component {
-  render() {
-    const items = this.props.items;
-    if (!items || Object.keys(items).length === 0) {
-      return "nothing";
+export default observer(
+  class ItemsDescription extends Component {
+    render() {
+      const items = this.props.items;
+      if (!items || items.length === 0) {
+        return "nothing";
+      }
+      return items.map(i => i.name).join(",");
     }
-
-    return Object.keys(items).join(",");
-  }
-}
+  });

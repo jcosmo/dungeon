@@ -8,6 +8,32 @@
   width: 80%;
   margin: auto;
   text-align: left;
+  display:flex;
+  flex-direction:row;
+  background: #EEEEEE;
+  padding: 1em;
+}
+
+.content .content1 {
+  flex-grow: 1;
+}
+
+.inventory {
+  flex-basis: 20rem;
+  display: flex;
+  flex-direction:column;
+  border-left: 1px solid #DDDDDD;
+}
+
+.inventory .header {
+  text-align: center;
+  font-weight:bold;
+  font-size: 2rem;
+}
+
+.inventory .inventory_item {
+  margin-left: 1em;
+  list-style-type: square;
 }
 
 .app-logo {
@@ -59,7 +85,7 @@
 }
 
 .command_entry input {
-  width: 100%;
+  width: 90%;
 }
 
 .feedback {

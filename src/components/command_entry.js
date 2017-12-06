@@ -9,9 +9,11 @@ class CommandEntry extends Component {
   handleChange = (event) => this.setState({term: event.target.value});
   keyPress = (event) => {
     if (event.keyCode === 13) {
-      const command = this.state.term
+      const command = this.state.term.trim();
       this.setState({lastCommand: command, term: ''});
-      this.props.onCommand(command);
+      if (command !== "") {
+        this.props.onCommand(command);
+      }
     }
   };
 
