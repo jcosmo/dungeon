@@ -17,7 +17,7 @@ class CommandEntry extends Component {
 
   render() {
     return (
-        <div>
+        <div className="command_entry">
           <input value={this.state.term} onChange={this.handleChange} onKeyDown={this.keyPress}/>
         </div>
     );

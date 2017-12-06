@@ -18,21 +18,15 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <h1 className="App-title">Welcome to the dungeon</h1>
+        <div className="app">
+          <header className="app-header">
+            <img src={logo} className="app-logo" alt="logo"/>
+            <h1 className="app-title">Welcome to the dungeon</h1>
           </header>
-          <div className="content">
-            <div className="room_description">
-              <RoomDescription room={appState.currentRoom}/>
-            </div>
-            <div className="command_entry">
-              <CommandEntry onCommand={this.processCommand}/>
-            </div>
-            <div className="feedback">
-              {appState.feedback}
-            </div>
+          <RoomDescription room={appState.currentRoom}/>
+          <CommandEntry onCommand={this.processCommand}/>
+          <div className="feedback">
+            {appState.feedback}
           </div>
           <Inventory />
         </div>

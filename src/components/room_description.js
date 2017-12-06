@@ -7,7 +7,7 @@ export default observer(
     class RoomDescription extends Component {
       render() {
         return (
-            <div>
+            <div className="room_description">
               <div className="description">
                 {this.props.room.description}
               </div>
