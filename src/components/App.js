@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentRoom: new Room("entrance", {"east":"east", "north":"north"}, {})
+      currentRoom: new Room("entrance", {"east":"east", "north":"north"}, {"A dog":"woof"})
 
     };
   }

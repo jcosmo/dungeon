@@ -7,13 +7,9 @@ export default class ExitsDescription extends Component {
 
   render() {
     var exits = this.props.exits;
-    if (Object.keys(exits).length === 0) {
+    if (!exits || Object.keys(exits).length === 0) {
       return "none";
     }
-    var exitEntries = Object.keys(exits).map(k => {
-      return <div>{k}</div>
-    }).join(",");
-
-    return exitEntries;
+    return Object.keys(exits).join(",");
   }
 }

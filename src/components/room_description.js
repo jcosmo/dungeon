@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ExitsDescription from './exits_description';
+import ItemsDescription from './items_description';
 
 class RoomDescription extends Component {
   constructor(props) {
@@ -9,14 +10,14 @@ class RoomDescription extends Component {
   render() {
     return (
       <div>
-        <div class="description">
+        <div className="description">
         {this.props.room.description}
         </div>
-        <div class="items">
+        <div className="items">
           Things here:
-          this.props.room.items
+          <ItemsDescription items={this.props.room.items} />
         </div>
-        <div class="exits">
+        <div className="exits">
           Exits:
            <ExitsDescription exits={this.props.room.exits} />
         </div>
