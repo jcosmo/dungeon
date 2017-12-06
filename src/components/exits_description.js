@@ -1,15 +1,11 @@
-import React, {Component} from "react";
+import {Component} from "react";
 
 export default class ExitsDescription extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    var exits = this.props.exits;
+    const exits = this.props.exits;
     if (!exits || Object.keys(exits).length === 0) {
       return "none";
     }
-    return Object.keys(exits).join(",");
+    return Object.keys(exits).join(", ");
   }
 }

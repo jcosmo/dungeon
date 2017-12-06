@@ -1,13 +1,9 @@
-import React, {Component} from "react";
+import {Component} from "react";
 
 export default class ItemsDescription extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    var items = this.props.items;
-    if ( !items || Object.keys(items).length === 0) {
+    const items = this.props.items;
+    if (!items || Object.keys(items).length === 0) {
       return "nothing";
     }
 

@@ -3,9 +3,9 @@
 }
 
 .content {
-	width: 80%;
-	margin: auto;
-	text-align: left;
+  width: 80%;
+  margin: auto;
+  text-align: left;
 }
 
 .App-logo {
@@ -29,30 +29,38 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .room_description {
-	margin-bottom:1em;
-	margin-top:1em;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .room_description .description {
-	color: green;
-	margin-top: 0.5em;
+  color: green;
+  margin-top: 0.5em;
 }
 
 .room_description .items {
-	color: blue;
-	margin-top: 0.5em;
+  color: blue;
+  margin-top: 0.5em;
 }
 
 .room_description .exits {
-	color: black;
-	margin-top: 0.5em;
+  color: black;
+  margin-top: 0.5em;
 }
 
-.command_entry input{
-	width: 100%;
+.command_entry input {
+  width: 100%;
+}
+
+.feedback {
+  margin-top: 0.5em;
 }
