@@ -1,11 +1,11 @@
 import appState from "./app_state";
 
-export class CommandProcessor {
-  processCommand(fullCmd) {
+export default class CommandProcessor {
+  static processCommand(fullCmd) {
     appState.clearFeedback();
 
-    var cmd = fullCmd;
-    var args = null;
+    let cmd = fullCmd;
+    let args = null;
     const match = fullCmd.match(/^([^\s]+)\s+(.*)/);
     if (match) {
       cmd = match[1];
@@ -15,7 +15,7 @@ export class CommandProcessor {
       return;
     }
     if (cmd === 'get') {
-      if (args == null) {
+      if (args === null) {
         appState.setFeedback("Get what?");
       }
       else {
@@ -23,7 +23,7 @@ export class CommandProcessor {
       }
     }
     else if (cmd === 'drop') {
-      if (args == null) {
+      if (args === null) {
         appState.setFeedback("Drop what?");
       }
       else {
@@ -41,7 +41,3 @@ export class CommandProcessor {
     }
   }
 }
-
-const commandProcessor = new CommandProcessor();
-
-export default commandProcessor;

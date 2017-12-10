@@ -6,12 +6,13 @@ import RoomDescription from "./room_description";
 import CommandEntry from "./command_entry";
 import Inventory from "./inventory";
 import Feedback from "./feedback";
-import commandProcessor from "../model/command_processor";
+import CommandProcessor from "../model/command_processor";
 import appState from '../model/app_state'
 import '../model/rooms'
+
 appState.moveto("entrance");
 
-export default observer(
+@observer
 class App extends Component {
   render() {
     return (
@@ -23,12 +24,14 @@ class App extends Component {
           <div className="content">
             <div className="content1">
               <RoomDescription room={appState.currentRoom}/>
-              <CommandEntry onCommand={(cmd) => commandProcessor.processCommand(cmd)}/>
-              <Feedback />
+              <CommandEntry onCommand={(cmd) => CommandProcessor.processCommand(cmd)}/>
+              <Feedback/>
             </div>
-            <Inventory />
+            <Inventory/>
           </div>
         </div>
     );
   }
-});
+}
+
+export default App;
