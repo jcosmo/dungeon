@@ -11,6 +11,9 @@ export class CommandProcessor {
       cmd = match[1];
       args = match[2]
     }
+    if (appState.currentRoom.perform(cmd, args)) {
+      return;
+    }
     if (cmd === 'get') {
       if (args == null) {
         appState.setFeedback("Get what?");

@@ -18,7 +18,7 @@ appState.moveto = action(function (roomId) {
 });
 
 appState.addRoom = action(function (id, d, e, i) {
-  appState.allRooms[id] = new Room(d, e, i);
+  return (appState.allRooms[id] = new Room(d, e, i));
 });
 
 appState.pickup = action(function (itemId) {
