@@ -1,6 +1,8 @@
 import {observable, action} from "mobx";
 
 export default class Room {
+  @observable description;
+
   constructor(d, e, i) {
     this.description = d;
     this.exits = Object.assign({}, e);
