@@ -9,7 +9,7 @@ import Feedback from "./feedback";
 import commandProcessor from "../model/command_processor";
 import appState from '../model/app_state'
 import '../model/rooms'
-appState.moveto("corridor1");
+appState.moveto("entrance");
 
 export default observer(
 class App extends Component {
