@@ -11,7 +11,7 @@ class Inventory extends Component {
       content = <li className="inventory_item"> Not even any fluff </li>
     }
     else {
-      content = appState.inventory.map(item => <InventoryItem key={item.id} item={item}/>)
+      content = appState.inventory.map(item => <InventoryItem key={item.key()} item={item}/>)
     }
     return (
         <div className="inventory">

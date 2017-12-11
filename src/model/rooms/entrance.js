@@ -1,4 +1,9 @@
 import appState from '../app_state'
+import Item from '../item'
+
+const thing = new Item(['thing', 'contraption'],
+    'Thing',
+    'A strange contraption with a propeller, a string and a small ball.\nPerhaps you could pull the string.');
 
 const room = appState.addRoom(
     'entrance',
@@ -8,7 +13,7 @@ const room = appState.addRoom(
       "upstairs": "dining"
     },
     [
-      {id: 'thing', name: 'thing'}
+      thing
     ]
 );
 

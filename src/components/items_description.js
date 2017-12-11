@@ -8,7 +8,7 @@ class ItemsDescription extends Component {
     if (!items || items.length === 0) {
       return "nothing";
     }
-    return items.map(i => i.name).join(",");
+    return items.map(i => i.short).join(",");
   }
 }
 

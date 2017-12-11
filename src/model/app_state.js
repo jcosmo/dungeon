@@ -26,7 +26,7 @@ class AppState {
     const item = this.currentRoom.takeFrom(itemId);
     if (item) {
       this.inventory.push(item);
-      this.feedback = `You pick up a ${item.name}.`
+      this.feedback = `You pick up a ${item.short}.`
     } else {
       this.feedback = `There is no ${itemId} here.`
     }
@@ -34,11 +34,11 @@ class AppState {
 
   @action
   drop(itemId) {
-    const item = this.inventory.find((item, index, array) => item.id === itemId);
+    const item = this.inventory.find((item, index, array) => item.matches(itemId));
     if (item) {
       this.inventory.remove(item);
       this.currentRoom.putInto(item);
-      this.feedback = `You drop a ${item.name}.`
+      this.feedback = `You drop a ${item.short}.`
     } else {
       this.feedback = `You are not carrying a ${itemId}.`
     }
