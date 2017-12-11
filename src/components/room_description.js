@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ExitsDescription from './exits_description';
 import ItemsDescription from './items_description';
+import RoomText from './room_text';
 import {observer} from 'mobx-react';
 
 @observer
@@ -9,7 +10,7 @@ class RoomDescription extends Component {
     return (
         <div className="room_description">
           <div className="description">
-            {this.props.room.description}
+            <RoomText text={this.props.room.description}/>
           </div>
           <div className="items">
             Things here:&nbsp;
