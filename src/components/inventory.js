@@ -6,7 +6,7 @@ import InventoryItem from './inventory_item';
 @observer
 class Inventory extends Component {
   render() {
-    var content;
+    let content;
     if (appState.inventory.length === 0) {
       content = <li className="inventory_item"> Not even any fluff </li>
     }

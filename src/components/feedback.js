@@ -5,7 +5,7 @@ import appState from "../model/app_state";
 @observer
 class Feedback extends Component {
   render() {
-    var content;
+    let content;
     if (appState.feedback) {
       content = appState.feedback.split(/\n/).map((line, idx) => <div key={idx}>{line}</div>)
     }
