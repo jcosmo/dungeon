@@ -1,7 +1,7 @@
 import {observable, action} from "mobx";
 
 export default class Room {
-  @observable description;
+  @observable description = "A blank room";
 
   constructor(d, e, i) {
     this.description = d;
@@ -10,11 +10,11 @@ export default class Room {
     this.commands = {};
   }
 
-  addCommand = function (cmd, action) {
+  addCommand(cmd, action) {
     this.commands[cmd] = action;
   };
 
-  perform = function (cmd, args) {
+  perform(cmd, args) {
     const action = this.commands[cmd];
     if (action) {
       return action(cmd, args, this);
@@ -22,19 +22,22 @@ export default class Room {
     return false;
   };
 
-  takeFrom = action(function (itemId) {
+  @action
+  takeFrom(itemId) {
     const item = this.items.find(i => i.id === itemId);
     if (item) {
       this.items.remove(item);
     }
     return item;
-  });
+  }
 
-  putInto = action(function (item) {
+  @action
+  putInto(item) {
     this.items.push(item);
-  });
+  };
 
-  setDescription = action(function (text) {
+  @action
+  setDescription(text) {
     this.description = text;
-  });
-};
+  };
+}
