@@ -1,67 +1,73 @@
-import {observable, action, computed, extendObservable} from "mobx";
+import {observable, action, computed} from "mobx";
 import Room from "./room";
 
-const appState = observable({
-  allRooms: {},
-  currentRoom: undefined,
-  feedback: undefined,
-  inventory: observable([])
-});
+class AppState {
+  @observable allRooms = {};
+  @observable currentRoom = undefined;
+  @observable feedback = undefined;
+  @observable inventory = [];
 
-appState.moveto = action(function (roomId) {
-  if (appState.allRooms[roomId]) {
-    appState.currentRoom = appState.allRooms[roomId];
-    console.log(`Now in ${roomId}`);
-  } else {
-    appState.feedback = `No such room: '${roomId}'`;
+  @action
+  moveto(roomId) {
+    if (this.allRooms[roomId]) {
+      this.currentRoom = this.allRooms[roomId];
+    } else {
+      this.feedback = `No such room: '${roomId}'`;
+    }
+  };
+
+  @action
+  addRoom(id, d, e, i) {
+    return (this.allRooms[id] = new Room(d, e, i));
+  };
+
+  @action
+  pickup(itemId) {
+    const item = this.currentRoom.takeFrom(itemId);
+    if (item) {
+      this.inventory.push(item);
+      this.feedback = `You pick up a ${item.name}.`
+    } else {
+      this.feedback = `There is no ${itemId} here.`
+    }
+  };
+
+  @action
+  drop(itemId) {
+    const item = this.inventory.find((item, index, array) => item.id === itemId);
+    if (item) {
+      this.inventory.remove(item);
+      this.currentRoom.putInto(item);
+      this.feedback = `You drop a ${item.name}.`
+    } else {
+      this.feedback = `You are not carrying a ${itemId}.`
+    }
+  };
+
+  @action
+  showHelp() {
+    this.feedback = 'Commands:\n - [exit name] to move\n - get [thing]\n - drop [thing]'
+  };
+
+  @action
+  clearFeedback() {
+    this.feedback = undefined;
+  };
+
+  @action
+  setFeedback(feedback) {
+    this.feedback = feedback;
+  };
+
+  @computed
+  get inventorySize() {
+    return this.inventory.size;
   }
-});
 
-appState.addRoom = action(function (id, d, e, i) {
-  return (appState.allRooms[id] = new Room(d, e, i));
-});
-
-appState.pickup = action(function (itemId) {
-  const item = appState.currentRoom.takeFrom(itemId);
-  if (item) {
-    appState.inventory.push(item);
-    appState.feedback = `You pick up a ${item.name}.`
-  } else {
-    appState.feedback = `There is no ${itemId} here.`
+  @computed
+  get inventoryEmpty() {
+    return this.inventory.size === 0;
   }
-});
+}
 
-appState.drop = action(function (itemId) {
-  const item = appState.inventory.find((item, index, array) => item.id === itemId);
-  if (item) {
-    appState.inventory.remove(item);
-    appState.currentRoom.putInto(item);
-    appState.feedback = `You drop a ${item.name}.`
-  } else {
-    appState.feedback = `You are not carrying a ${itemId}.`
-  }
-});
-
-appState.showHelp = action( function() {
-  appState.feedback = 'Commands:\n - [exit name] to move\n - get [thing]\n - drop [thing]'
-});
-
-appState.clearFeedback = action( function() {
-  appState.feedback = undefined;
-});
-
-appState.setFeedback = action( function(feedback) {
-  appState.feedback = feedback;
-});
-
-extendObservable(appState, {
-  inventorySize: computed(function () {
-    return appState.inventory.size;
-  }),
-
-  inventoryEmpty: computed(function () {
-    return appState.inventory.size === 0;
-  })
-});
-
-export default appState;
+export default new AppState();
