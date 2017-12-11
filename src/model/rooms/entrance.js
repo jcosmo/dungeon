@@ -5,7 +5,7 @@ const room = appState.addRoom(
     'You stand in the entrance to the house.\nA set of juggling balls is on the floor.',
     {
       "corridor": "corridor1",
-      "upstairs": "dinning"
+      "upstairs": "dining"
     },
     [
       {id: 'thing', name: 'thing'}
