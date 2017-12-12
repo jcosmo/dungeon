@@ -21,10 +21,10 @@ export default class Item {
     this.commands[cmd] = action;
   };
 
-  perform(verb, args) {
+  perform(verb, args, container) {
     const command = this.commands[verb];
     if (command) {
-      return command(verb, args, this);
+      return command(verb, args, this, container);
     }
     return false;
   };

@@ -13,7 +13,7 @@ export default class Room {
 
   addCommand(cmd, action) {
     this.commands[cmd] = action;
-  };
+  }
 
   @action
   addItem(item) {
@@ -21,9 +21,9 @@ export default class Room {
   };
 
   perform(verb, args) {
-    // if (this.items.find(i => i.perform(verb, args))) {
-    //   return true;
-    // }
+    if (this.items.find(i => i.perform(verb, args, this))) {
+      return true;
+    }
     const command = this.commands[verb];
     if (command) {
       return command(verb, args, this);

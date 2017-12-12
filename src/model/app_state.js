@@ -6,6 +6,7 @@ class AppState {
   @observable currentRoom = undefined;
   @observable feedback = undefined;
   @observable inventory = [];
+  possibleFeedback = undefined;
 
   @action
   moveto(roomId) {
@@ -51,6 +52,7 @@ class AppState {
 
   @action
   clearFeedback() {
+    this.possibleFeedback = undefined;
     this.feedback = undefined;
   };
 
@@ -67,6 +69,20 @@ class AppState {
   @computed
   get inventoryEmpty() {
     return this.inventory.size === 0;
+  }
+
+  setPossibleFeedback( feedback ) {
+    this.possibleFeedback = feedback;
+  }
+
+  finaliseFeedback( text ) {
+    if (!this.possibleFeedback ) {
+      this.setFeedback(text);
+    }
+    else {
+      this.setFeedback(this.possibleFeedback);
+      this.possibleFeedback = undefined;
+    }
   }
 }
 

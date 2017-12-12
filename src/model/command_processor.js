@@ -4,40 +4,43 @@ export default class CommandProcessor {
   static processCommand(fullCmd) {
     appState.clearFeedback();
 
-    let cmd = fullCmd;
+    let verb = fullCmd;
     let args = null;
     const match = fullCmd.match(/^([^\s]+)\s+(.*)/);
     if (match) {
-      cmd = match[1];
+      verb = match[1];
       args = match[2]
     }
-    if (appState.currentRoom.perform(cmd, args)) {
+    if (appState.inventory.find(i => i.perform(verb, args, undefined))) {
       return;
     }
-    if (cmd === 'get') {
+    if (appState.currentRoom.perform(verb, args)) {
+      return;
+    }
+    if (verb === 'get') {
       if (args === null) {
-        appState.setFeedback("Get what?");
+        appState.setPossibleFeedback("Get what?");
       }
       else {
         appState.pickup(args)
       }
     }
-    else if (cmd === 'drop') {
+    else if (verb === 'drop') {
       if (args === null) {
-        appState.setFeedback("Drop what?");
+        appState.setPossibleFeedback("Drop what?");
       }
       else {
         appState.drop(args)
       }
     }
-    else if (cmd === 'help') {
+    else if (verb === 'help') {
       appState.showHelp();
     }
-    else if (appState.currentRoom.exits[cmd]) {
+    else if (appState.currentRoom.exits[verb]) {
       appState.clearFeedback();
-      appState.moveto(appState.currentRoom.exits[cmd]);
+      appState.moveto(appState.currentRoom.exits[verb]);
     } else {
-      appState.setFeedback(`I don't know what you mean by '${cmd}'.\nTry typing 'help' for help.`);
+      appState.finaliseFeedback(`I don't know what you mean by '${verb}'.\nTry typing 'help' for help.`);
     }
   }
 }
