@@ -1,27 +1,23 @@
 import {observable, action} from "mobx";
+import Container from './container';
 
-export default class Room {
+export default class Room extends Container {
   @observable description = "A blank room";
-  @observable items = [];
   commands = {};
 
   constructor(d, e, i) {
+    super();
     this.description = d;
     this.exits = Object.assign({}, e);
-    this.items.push(...i);
+    i.forEach(x => x.moveTo(this));
   }
 
   addCommand(cmd, action) {
     this.commands[cmd] = action;
   }
 
-  @action
-  addItem(item) {
-    this.items.push(item);
-  };
-
   perform(verb, args) {
-    if (this.items.find(i => i.perform(verb, args, this))) {
+    if (super.perform(verb, args)) {
       return true;
     }
     const command = this.commands[verb];
@@ -29,20 +25,6 @@ export default class Room {
       return command(verb, args, this);
     }
     return false;
-  };
-
-  @action
-  takeFrom(itemId) {
-    const item = this.items.find(i => i.matches(itemId));
-    if (item) {
-      this.items.remove(item);
-    }
-    return item;
-  }
-
-  @action
-  putInto(item) {
-    this.items.push(item);
   };
 
   @action

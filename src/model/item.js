@@ -5,7 +5,7 @@ export default class Item {
   @observable short = "item";
   @observable description = "A generic item";
   commands = {};
-
+  environment = undefined;
 
   constructor(i, short, description) {
     this.ids.push(...i);
@@ -41,5 +41,14 @@ export default class Item {
 
   key() {
     return this.ids[0];
+  }
+
+  @action
+  moveTo(env) {
+    if (this.environment) {
+      this.environment.removeFrom(this);
+    }
+    this.environment = env;
+    this.environment.insertInto(this);
   }
 }

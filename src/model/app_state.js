@@ -1,11 +1,12 @@
 import {observable, action, computed} from "mobx";
 import Room from "./room";
+import Inventory from "./inventory";
 
 class AppState {
   @observable allRooms = {};
   @observable currentRoom = undefined;
   @observable feedback = undefined;
-  @observable inventory = [];
+  inventory = new Inventory();
   possibleFeedback = undefined;
 
   @action
@@ -83,6 +84,10 @@ class AppState {
       this.setFeedback(this.possibleFeedback);
       this.possibleFeedback = undefined;
     }
+  }
+
+  get player() {
+    return this.inventory;
   }
 }
 

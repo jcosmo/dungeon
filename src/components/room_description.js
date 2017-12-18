@@ -14,7 +14,7 @@ class RoomDescription extends Component {
           </div>
           <div className="items">
             Things here:&nbsp;
-            <ItemsDescription items={this.props.room.items}/>
+            <ItemsDescription items={this.props.room.contents}/>
           </div>
           <div className="exits">
             Exits:&nbsp;

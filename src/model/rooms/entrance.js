@@ -5,9 +5,9 @@ const thing = new Item(['thing', 'contraption'],
     'Thing',
     'A strange contraption with a propeller, a string and a small ball.\nPerhaps you could pull the string.');
 
-thing.addCommand('pull', (verb, args, item, container) => {
+thing.addCommand('pull', (verb, args) => {
   if (args === 'string') {
-    if (container) {
+    if (thing.environment !== appState.player) {
       appState.setPossibleFeedback('You would have to be holding the thing to do that.');
       return false;
     } else {

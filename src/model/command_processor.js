@@ -8,29 +8,49 @@ export default class CommandProcessor {
     let args = null;
     const match = fullCmd.match(/^([^\s]+)\s+(.*)/);
     if (match) {
-      verb = match[1];
-      args = match[2]
+      verb = match[1].trim();
+      args = match[2].trim();
     }
-    if (appState.inventory.find(i => i.perform(verb, args, undefined))) {
+    if (appState.inventory.perform(verb, args)) {
       return;
     }
     if (appState.currentRoom.perform(verb, args)) {
       return;
     }
     if (verb === 'get') {
-      if (args === null) {
-        appState.setPossibleFeedback("Get what?");
-      }
-      else {
-        appState.pickup(args)
+      appState.setPossibleFeedback("Get what?");
+      if (args !== null) {
+        const item = appState.currentRoom.contains(args);
+        if (item) {
+          item.moveTo(appState.inventory);
+          appState.setFeedback("You pick up a " + item.short);
+        }
       }
     }
     else if (verb === 'drop') {
-      if (args === null) {
-        appState.setPossibleFeedback("Drop what?");
+      appState.setPossibleFeedback("Drop what?");
+      if (args !== null) {
+        const item = appState.inventory.contains(args);
+        if (item) {
+          item.moveTo(appState.currentRoom);
+          appState.setFeedback("You drop a " + item.short);
+        }
       }
-      else {
-        appState.drop(args)
+    }
+    else if (verb === 'examine' || verb === 'look') {
+      appState.setPossibleFeedback(`${verb} what?`);
+      if (verb === 'look') {
+        const match = args.match(/^at\s+(.*)/);
+        if (match) {
+          args = match[1].trim();
+        }
+        let item = appState.inventory.contains(args);
+        if (!item){
+          item = appState.currentRoom.contains(args);
+        }
+        if (item){
+          appState.setFeedback(`You see:\n${item.description}`);
+        }
       }
     }
     else if (verb === 'help') {
