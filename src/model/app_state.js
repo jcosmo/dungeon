@@ -48,7 +48,7 @@ class AppState {
 
   @action
   showHelp() {
-    this.feedback = 'Commands:\n - [exit name] to move\n - get [thing]\n - drop [thing]'
+    this.feedback = 'Commands:\n - [exit name] to move\n - get [thing]\n - drop [thing]\n - examine [thing]'
   };
 
   @action
