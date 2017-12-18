@@ -1,4 +1,5 @@
 import {observable, action} from "mobx";
+import appState from './app_state';
 
 export default class Item {
   ids = [];
@@ -43,12 +44,17 @@ export default class Item {
     return this.ids[0];
   }
 
-  @action
   moveTo(env) {
     if (this.environment) {
       this.environment.removeFrom(this);
     }
     this.environment = env;
-    this.environment.insertInto(this);
+    if (this.environment) {
+      this.environment.insertInto(this);
+    }
+  }
+
+  get isHeldByPlayer() {
+    return this.environment !== appState.player
   }
 }

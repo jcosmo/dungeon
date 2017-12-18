@@ -1,4 +1,4 @@
-import appState from '../app_state'
+import appState from '../../model/app_state'
 
 appState.addRoom(
   'corridor1',

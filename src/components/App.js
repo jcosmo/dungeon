@@ -8,7 +8,7 @@ import Inventory from "./inventory";
 import Feedback from "./feedback";
 import CommandProcessor from "../model/command_processor";
 import appState from '../model/app_state'
-import '../model/rooms'
+import '../world/rooms'
 
 appState.moveto("entrance");
 
