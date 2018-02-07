@@ -14,6 +14,8 @@ class Fidget extends Item {
           return false;
         } else {
           appState.setFeedback('You pull the string on the thing and the propeller spins violently for a period of time.');
+          this.setShort("Thing (spinning)");
+          setTimeout(() => this.setShort("Thing"), 5000);
           return true;
         }
       } else {
