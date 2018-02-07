@@ -1,6 +1,6 @@
 import {observable, action, computed} from "mobx";
 
-export default class Inventory {
+export default class Container {
   @observable contents = [];
 
   perform(verb, args) {
